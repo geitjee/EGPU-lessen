@@ -18,7 +18,10 @@ public class SpawnRandomBall : MonoBehaviour
         notBalls = new List<GameObject>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// For lessons changes all the spawned objects material on X.
+    /// Spawns a new random object from the balls[] and gives it a random mass and drag.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))

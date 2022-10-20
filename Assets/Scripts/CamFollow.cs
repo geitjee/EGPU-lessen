@@ -13,6 +13,9 @@ public class CamFollow : MonoBehaviour
     public float rotationDamping = 50.0f;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// Checks if there is a object with player tag and then assignes that as the object to follow.
+    /// </summary>
     void Awake()
     {
         if (!player)
@@ -22,6 +25,10 @@ public class CamFollow : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// Function to move from current position to the desired follow position.
+    /// And makes sure the camera looks at the player object.
+    /// </summary>
     void FixedUpdate()
     {
         Vector3 wantedPosition = player.TransformPoint(0, height, -distance);

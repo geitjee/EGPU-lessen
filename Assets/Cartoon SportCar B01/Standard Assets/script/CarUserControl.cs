@@ -17,7 +17,9 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Car = GetComponent<CarController>();
         }
 
-
+        /// <summary>
+        /// Makes he car move by checking the Horizontal input (a, d etc.) and always goes full speed.
+        /// </summary>
         private void FixedUpdate()
         {
             // pass the input to the car!

@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
+    /// <summary>
+    /// For lessons, to move a simple starter character around by key inputs.
+    /// </summary>
     void Update()
     {
         Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));

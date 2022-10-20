@@ -5,14 +5,12 @@ using UnityEngine;
 public class CamStable : MonoBehaviour
 {
     public GameObject theCar;
-  
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
+    /// <summary>
+    /// Makes sure the camera doesn't tilt over if the car does that.
+    /// Only follows the Y rotation.
+    /// </summary>
     void Update()
     {
         float CarX = theCar.transform.eulerAngles.x;
