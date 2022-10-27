@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BestTimeManager : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class BestTimeManager : MonoBehaviour
             if(PlayerPrefs.HasKey(levels[i].parent.name))
             {
                 Debug.Log(levels[i].parent.name);
-                levels[i].GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString(levels[i].parent.name);
+                TimeSpan time = TimeSpan.FromSeconds(PlayerPrefs.GetFloat(levels[i].parent.name));
+                levels[i].GetComponent<TextMeshProUGUI>().text = String.Format(@"{0:mm\:ss\.ff}", time);
             }
             else
             {
