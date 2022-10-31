@@ -28,7 +28,7 @@ public class GameMenuScript : MonoBehaviour
         }
     }
 
-    public void Restart()
+    public static void Restart()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

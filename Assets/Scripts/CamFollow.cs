@@ -6,8 +6,8 @@ public class CamFollow : MonoBehaviour
 {
 
     public Transform player;
-    public float distance = 1.6f;
-    public float height = 0.4f;
+    public float distance = 18f;
+    public float height = 14.5f;
     public float damping = 0.7f;
     public bool smoothRotation = true;
     public float rotationDamping = 50.0f;
