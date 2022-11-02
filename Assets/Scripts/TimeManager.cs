@@ -15,7 +15,6 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
         isRacing = true;
         currentTime = 0;
     }
@@ -48,6 +47,6 @@ public class TimeManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name, currentTime);
         }
-        GameObject.Find("Canvas").GetComponent<GameMenuScript>().OpenFinishMenu(currentTime);
+        GameObject.Find("IngameCanvas").GetComponent<GameMenuScript>().OpenFinishMenu(currentTime);
     }
 }

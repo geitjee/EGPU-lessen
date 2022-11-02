@@ -5,7 +5,6 @@ using UnityEngine;
 public class CamStable : MonoBehaviour
 {
     public GameObject theCar;
-
     // Update is called once per frame
     /// <summary>
     /// Makes sure the camera doesn't tilt over if the car does that.

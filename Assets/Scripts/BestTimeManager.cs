@@ -15,6 +15,25 @@ public class BestTimeManager : MonoBehaviour
     void Awake()
     {
         bool IsAccessable = true;
+        for (int i = 0; i < this.transform.childCount-1; i++)
+        {
+            if (PlayerPrefs.HasKey(this.transform.GetChild(i).name))
+            {
+                Debug.Log(this.transform.GetChild(i).name);
+                TimeSpan time = TimeSpan.FromSeconds(PlayerPrefs.GetFloat(this.transform.GetChild(i).name));
+                this.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = String.Format(@"{0:mm\:ss\.ff}", time);
+            }
+            else
+            {
+                this.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = "N/A";
+                if (!IsAccessable)
+                {
+                    this.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                }
+                IsAccessable = false;
+            }
+        }
+        /*
         for (int i = 0; i < levels.Count; i++)
         {
             if(PlayerPrefs.HasKey(levels[i].parent.name))
@@ -32,6 +51,6 @@ public class BestTimeManager : MonoBehaviour
                 }
                 IsAccessable = false;
             }
-        }
+        }*/
     }
 }
