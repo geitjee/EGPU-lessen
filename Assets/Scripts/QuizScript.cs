@@ -81,6 +81,9 @@ public class QuizScript : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    /// <summary>
+    /// Checks the questions anwser and goes to the next question or starts the quiz.
+    /// </summary>
     public void AnwserQuestion()
     {
         bool correctAnswer = false;
