@@ -10,7 +10,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private CarController m_Car; // the car controller we want to use
 
         public float rotSpeed;
-
+        public float speedMultiplier = 1;
         private void Awake()
         {
             // get the car controller
@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Vehicles.Car
             // pass the input to the car!
             float h = CrossPlatformInputManager.GetAxis("Horizontal") * rotSpeed;
             //float v = CrossPlatformInputManager.GetAxis("Vertical");
-            float v = 1;
+            float v = 1 * speedMultiplier;
 #if !MOBILE_INPUT
             float handbrake = CrossPlatformInputManager.GetAxis("Jump");
             m_Car.Move(h, v, v, handbrake);

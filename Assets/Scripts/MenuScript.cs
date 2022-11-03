@@ -37,6 +37,9 @@ public class MenuScript : MonoBehaviour
         infoMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Opens the menu which explains how the game works.
+    /// </summary>
     public void OpenInfoMenu()
     {
         infoMenu.SetActive(true);

@@ -13,44 +13,70 @@ public class GameMenuScript : MonoBehaviour
     public TextMeshProUGUI bestTimeText;
 
     // Start is called before the first frame update
+    /// <summary>
+    /// Closes the pause & finish menu.
+    /// </summary>
     void Start()
     {
         pauseMenu.SetActive(false);
         finishMenu.SetActive(false);
-        Time.timeScale = 1;
     }
 
+    /// <summary>
+    /// Just so you can also pause and restart with the keyboard.
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
     }
 
-    public static void Restart()
+    /// <summary>
+    /// Will load the current level again and makes sure the time is continouing again.
+    /// </summary>
+    public void Restart()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    /// <summary>
+    /// Stops the time from running and opens the pause menu.
+    /// </summary>
     public void PauseGame()
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// closes the pause menu and continous the time.
+    /// </summary>
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
+    /// <summary>
+    /// Loads the scene of the menu.
+    /// </summary>
     public void ToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
     }
 
+    /// <summary>
+    /// First sets the time in which the level was finished and sets all the other texts and opens the finish menu.
+    /// </summary>
+    /// <param name="finishedTime">The time in which the player crossed the finish line. </param>
     public void OpenFinishMenu(float finishedTime)
     {
         TimeSpan currentTime = TimeSpan.FromSeconds(finishedTime);

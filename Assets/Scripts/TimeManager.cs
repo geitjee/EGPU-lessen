@@ -12,14 +12,19 @@ public class TimeManager : MonoBehaviour
     private bool isRacing;
 
     public TextMeshProUGUI timer;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Says that the player is racing and resets the 'stopwatch'.
+    /// </summary>
     void Start()
     {
         isRacing = true;
         currentTime = 0;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// If the player is racing the time increases and the timer shown is updated with a good format.
+    /// </summary>
     void Update()
     {
         if (isRacing)
