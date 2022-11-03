@@ -26,7 +26,10 @@ public class QuizScript : MonoBehaviour
     
     private int currentQuestion;
     private int correctAnswerCount = 0;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Creates the quiz in the canvas from the given input to the quizManager (or the object that has this script).
+    /// </summary>
     void Awake()
     {
         if (quizQuestions.Length == 0)
@@ -46,6 +49,7 @@ public class QuizScript : MonoBehaviour
             //Change Title
             string progressTxt = "Question " + (i + 1) + "/" + quizQuestions.Length;
             g.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = progressTxt;
+
             //Change Question
             string sumStr = "";
             switch (curQuestion.function)
@@ -65,7 +69,6 @@ public class QuizScript : MonoBehaviour
             }
             string questionTxt = String.Format("{0} {1} {2}", curQuestion.num1, sumStr, curQuestion.num2);
             g.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = questionTxt;
-            //Set Input correct
 
             //Set Button correct
             g.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(delegate { AnwserQuestion(); });
@@ -113,9 +116,7 @@ public class QuizScript : MonoBehaviour
             //Quiz is over.
             quizMenu.SetActive(false);
             CarUserControl carControl = FindObjectOfType(typeof(CarUserControl)) as CarUserControl;
-            Debug.Log(((float)correctAnswerCount / (float)quizQuestions.Length) / 10f);
             carControl.speedMultiplier = 0.9f + ((float)correctAnswerCount / (float)quizQuestions.Length) / 10f;
-            Debug.Log(carControl.speedMultiplier);
             Time.timeScale = 1;
         }
     }
