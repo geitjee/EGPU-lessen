@@ -237,17 +237,17 @@ PrefabInstance:
     - target: {fileID: 6597193155188013470, guid: e53c2d4ba076d554483c2122f6aaf379,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6597193155188013470, guid: e53c2d4ba076d554483c2122f6aaf379,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.91
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6597193155188013470, guid: e53c2d4ba076d554483c2122f6aaf379,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.86
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 6597193155188013470, guid: e53c2d4ba076d554483c2122f6aaf379,
         type: 3}
@@ -291,6 +291,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1166083043, guid: e53c2d4ba076d554483c2122f6aaf379,
     type: 3}
   m_PrefabInstance: {fileID: 793458915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &844053281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249176856, guid: 069e846946132d24d9570e1d800f3801,
+    type: 3}
+  m_PrefabInstance: {fileID: 3180696155828225077}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &853666395
 GameObject:
@@ -463,6 +469,69 @@ MonoBehaviour:
   damping: 0.7
   smoothRotation: 1
   rotationDamping: 50
+--- !u!1 &1960824949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1960824951}
+  - component: {fileID: 1960824950}
+  m_Layer: 0
+  m_Name: _QuizManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1960824950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960824949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b0822792eefaf42b1cedd542533396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizQuestions:
+  - num1: 81
+    function: 3
+    num2: 10
+  - num1: 4
+    function: 2
+    num2: 13
+  - num1: 132
+    function: 1
+    num2: 46
+  - num1: 8
+    function: 2
+    num2: 7
+  - num1: 42
+    function: 3
+    num2: 5
+  quizMenu: {fileID: 844053281}
+  questionInstance: {fileID: 7171162392213364357, guid: d6c3fcd3ba78a044cb4724ae7f8a40ce,
+    type: 3}
+--- !u!4 &1960824951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960824949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2163970858007920644
 PrefabInstance:
   m_ObjectHideFlags: 0

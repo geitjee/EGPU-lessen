@@ -103,6 +103,7 @@ public class QuizScript : MonoBehaviour
                 correctAnswer = CalculatorScript.DivideNumbers(curQuestion.num1, curQuestion.num2).ToString().Equals(questionsList[currentQuestion].transform.GetChild(2).GetComponent<TMP_InputField>().text);
                 break;
         }
+        StartCoroutine(ChangeBackground(correctAnswer));
         if (correctAnswer)
         {
             correctAnswerCount++;
@@ -121,6 +122,27 @@ public class QuizScript : MonoBehaviour
             CarUserControl carControl = FindObjectOfType(typeof(CarUserControl)) as CarUserControl;
             carControl.speedMultiplier = 0.9f + ((float)correctAnswerCount / (float)quizQuestions.Length) / 10f;
             Time.timeScale = 1;
+        }
+    }
+
+    /// <summary>
+    /// Function to show if the answer was correct or wrong by changing the background green or red for half a second.
+    /// </summary>
+    /// <param name="isCorrect">Bool if the answer was correct or not.</param>
+    /// <returns></returns>
+    IEnumerator ChangeBackground(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            quizMenu.GetComponent<RawImage>().color = Color.green;
+            yield return new WaitForSecondsRealtime(0.5f);
+            quizMenu.GetComponent<RawImage>().color = Color.white;
+        }
+        else
+        {
+            quizMenu.GetComponent<RawImage>().color = Color.red;
+            yield return new WaitForSecondsRealtime(0.5f);
+            quizMenu.GetComponent<RawImage>().color = Color.white;
         }
     }
 }

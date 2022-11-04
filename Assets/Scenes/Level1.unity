@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quizQuestions:
-  - num1: 1
+  - num1: 3
     function: 1
     num2: 1
   - num1: 2
