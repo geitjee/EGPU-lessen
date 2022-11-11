@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b0822792eefaf42b1cedd542533396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerText: {fileID: 3180696155828225080}
   quizQuestions:
   - num1: 43
     function: 0
@@ -901,3 +902,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3180696155828225077}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3180696155828225080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2064413530, guid: 069e846946132d24d9570e1d800f3801,
+    type: 3}
+  m_PrefabInstance: {fileID: 3180696155828225077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

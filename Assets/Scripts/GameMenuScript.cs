@@ -40,7 +40,7 @@ public class GameMenuScript : MonoBehaviour
     /// <summary>
     /// Will load the current level again and makes sure the time is continouing again.
     /// </summary>
-    public void Restart()
+    public static void Restart()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -18,10 +18,15 @@ namespace UnityStandardAssets.Vehicles.Car
         }
 
         /// <summary>
+        /// Checks if the car has fallen of the map.
         /// Makes he car move by checking the Horizontal input (a, d etc.) and always goes full speed.
         /// </summary>
         private void FixedUpdate()
         {
+            if (transform.position.y < -5)
+            {
+                GameMenuScript.Restart();
+            }
             // pass the input to the car!
             float h = CrossPlatformInputManager.GetAxis("Horizontal") * rotSpeed;
             //float v = CrossPlatformInputManager.GetAxis("Vertical");

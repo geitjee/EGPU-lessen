@@ -17,6 +17,7 @@ public class QuizScript : MonoBehaviour
         public QuestionFunction function;
         public float num2;
     }
+    public TextMeshProUGUI powerText;
 
     public QuizQuestion[] quizQuestions;
 
@@ -26,12 +27,16 @@ public class QuizScript : MonoBehaviour
     
     private int currentQuestion;
     private int correctAnswerCount = 0;
+    private CarUserControl carControl;
 
     /// <summary>
     /// Creates the quiz in the canvas from the given input to the quizManager (or the object that has this script).
     /// </summary>
     void Awake()
     {
+        carControl = FindObjectOfType(typeof(CarUserControl)) as CarUserControl;
+        carControl.speedMultiplier = 0.8f;
+        powerText.text = String.Format("Car power: {0}%", (carControl.speedMultiplier * 100));
         if (quizQuestions.Length == 0)
         {
             quizMenu.SetActive(false);
@@ -107,6 +112,8 @@ public class QuizScript : MonoBehaviour
         if (correctAnswer)
         {
             correctAnswerCount++;
+            carControl.speedMultiplier += 0.2f * (1 / (float)quizQuestions.Length);
+            powerText.text = String.Format("Car power: {0}%", (carControl.speedMultiplier * 100));
         }
         if (currentQuestion < quizQuestions.Length - 1)
         {
@@ -119,10 +126,9 @@ public class QuizScript : MonoBehaviour
         {
             //Quiz is over.
             quizMenu.SetActive(false);
-            CarUserControl carControl = FindObjectOfType(typeof(CarUserControl)) as CarUserControl;
-            carControl.speedMultiplier = 0.9f + ((float)correctAnswerCount / (float)quizQuestions.Length) / 10f;
             Time.timeScale = 1;
         }
+
     }
 
     /// <summary>
