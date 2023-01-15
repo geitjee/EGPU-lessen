@@ -8,7 +8,7 @@ using System;
 public class TimeManager : MonoBehaviour
 {
     [SerializeField]
-    private float currentTime;
+    private static float currentTime;
     private bool isRacing;
 
     public TextMeshProUGUI timer;
