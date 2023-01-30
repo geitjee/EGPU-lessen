@@ -1,17 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static QuizScript;
+using Random = UnityEngine.Random;
 
 public class RoadSpawner : MonoBehaviour
 {
     public GameObject theCar;
-    private int minRoadRemoveDistance = 50;
+    private int minRoadRemoveDistance = 500;
 
     private int roadStartAmount = 10;
     private int minStraightroads = 3;
     private int maxStraightRoads = 15;
-    private int maxRoadAmount = 50;
+    private int maxRoadAmount = 80;
 
     public GameObject startingRoad;
     public List<GameObject> turningRoads;
@@ -27,12 +30,14 @@ public class RoadSpawner : MonoBehaviour
 
     public RoadQuestions[] allQuestions;
 
+    private static RoadSpawner instance;
     /// <summary>
     /// Function that runs before the scene gets loaded.
     /// sets up the basic stuff and finds all the RoadQuestions ScriptableObjects.
     /// </summary>
     private void Awake()
     {
+        instance = this;
         if (theCar == null)
         {
             throw new System.Exception("ERROR: the car cannot be null!");
@@ -41,15 +46,19 @@ public class RoadSpawner : MonoBehaviour
         {
             throw new System.Exception("ERROR: there must be a starting road!");
         }
+        if (allQuestions == null || allQuestions.Length == 0)
+        {
+            throw new System.Exception("ERROR: there must available questions!");
+        }
         previousRoad = startingRoad.GetComponent<Road>();
 
         //Code to find all the existing RoadQuestions.
-        string[] a = AssetDatabase.FindAssets("t:" + typeof(RoadQuestions).Name);
+        /*string[] a = AssetDatabase.FindAssets("t:" + typeof(RoadQuestions).Name);
         allQuestions = new RoadQuestions[a.Length];
         for (int i = 0; i < a.Length; i++)
         {
             allQuestions[i] = AssetDatabase.LoadAssetAtPath<RoadQuestions>(AssetDatabase.GUIDToAssetPath(a[i]));
-        }
+        } Aparrently this doesn't work in the build version. */
     }
 
     // Start is called before the first frame update
@@ -64,6 +73,7 @@ public class RoadSpawner : MonoBehaviour
         {
             SpawnRoad(startingRoad);
         }
+        SpawnQuizRoad();
         SpawnRoad(SelectRandomRoad(true));
     }
 
@@ -85,24 +95,20 @@ public class RoadSpawner : MonoBehaviour
             }
             if (previousRoad.question.anwserLeft.isCorrect)
             {
-                Instantiate(road, previousRoad.rightEndPoint.transform.position, Quaternion.identity).GetComponent<Road>();
-                previousRoad = Instantiate(road, previousRoad.endPoint.transform.position, Quaternion.identity).GetComponent<Road>();
+                Instantiate(road, previousRoad.rightEndPoint.transform.position, road.transform.rotation * previousRoad.rightEndPoint.transform.rotation).GetComponent<Road>();
+                previousRoad = Instantiate(road, previousRoad.endPoint.transform.position, road.transform.rotation * previousRoad.endPoint.transform.rotation).GetComponent<Road>();
             }
             else if (previousRoad.question.anwsersRight.isCorrect)
             {
-                Instantiate(road, previousRoad.endPoint.transform.position, Quaternion.identity).GetComponent<Road>();
-                previousRoad = Instantiate(road, previousRoad.rightEndPoint.transform.position, Quaternion.identity).GetComponent<Road>();
+                Instantiate(road, previousRoad.endPoint.transform.position, road.transform.rotation * previousRoad.endPoint.transform.rotation).GetComponent<Road>();
+                previousRoad = Instantiate(road, previousRoad.rightEndPoint.transform.position, road.transform.rotation * previousRoad.rightEndPoint.transform.rotation).GetComponent<Road>();
             }
             else
             {
                 throw new System.Exception("ERROR: no correct anwser!");
             }
 
-            for (int i = 0; i < Random.Range(minStraightroads, maxStraightRoads-2); i++)
-            {
-                SpawnRoad(SelectRandomRoad(false));
-            }
-            SpawnRoad(SelectRandomRoad(true));
+            
         }
         else
         {
@@ -112,15 +118,47 @@ public class RoadSpawner : MonoBehaviour
         }
     }
 
+    public static void StaticSpawnQuizRoad()
+    {
+        instance.SpawnQuizRoad();
+    }
+
     private void SpawnQuizRoad()
     {
         Quaternion newRoadRotation = quizRoad.transform.rotation * previousRoad.endPoint.transform.rotation;
         //Determine the difficulty that the question should be.
         RoadQuestions question = allQuestions[Random.RandomRange(0, allQuestions.Length)];
 
+        //Change Question
+        string sumStr = "";
+        switch (question.question.function)
+        {
+            case QuestionFunction.Add:
+                sumStr = "+";
+                break;
+            case QuestionFunction.Substract:
+                sumStr = "-";
+                break;
+            case QuestionFunction.Multiply:
+                sumStr = "*";
+                break;
+            case QuestionFunction.Divide:
+                sumStr = "/";
+                break;
+        }
+        string questionTxt = String.Format("{0} {1} {2}", question.question.num1, sumStr, question.question.num2);
+
+
         previousRoad = Instantiate(quizRoad, previousRoad.endPoint.transform.position, newRoadRotation).GetComponent<Road>();
+        previousRoad.question = question;
+        previousRoad.GetComponent<QuestionRoad>().SetQuestion(questionTxt, question.anwserLeft.anwser.ToString(), question.anwsersRight.anwser.ToString());
         currentRoads.Add(previousRoad.gameObject);
-        //currentRoadLocation += Vector3.Scale(previousRoad.GetComponent<Renderer>().bounds.size, currentRoadDirection);
+
+        for (int i = 0; i < Random.Range(minStraightroads, maxStraightRoads - 2); i++)
+        {
+            SpawnRoad(SelectRandomRoad(false));
+        }
+        SpawnRoad(SelectRandomRoad(true));
     }
 
     private GameObject SelectRandomRoad(bool isTurn)

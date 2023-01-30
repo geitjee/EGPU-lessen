@@ -8,7 +8,8 @@ public class MenuScript : MonoBehaviour
 {
     public GameObject levelsMenu;
     public GameObject infoMenu;
-    
+    public GameObject settingsMenu;
+
     // Start is called before the first frame update
     /// <summary>
     /// Sets the levels menu inactive so just the main menu is shown.
@@ -17,6 +18,7 @@ public class MenuScript : MonoBehaviour
     {
         levelsMenu.SetActive(false);
         infoMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     /// <summary>
@@ -26,6 +28,7 @@ public class MenuScript : MonoBehaviour
     {
         levelsMenu.SetActive(false);
         infoMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     /// <summary>
@@ -35,6 +38,7 @@ public class MenuScript : MonoBehaviour
     {
         levelsMenu.SetActive(true);
         infoMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     /// <summary>
@@ -44,6 +48,25 @@ public class MenuScript : MonoBehaviour
     {
         infoMenu.SetActive(true);
         levelsMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+    }
+
+    /// <summary>
+    /// Loads the endless mode scene.
+    /// </summary>
+    public void PlayEndlessMode()
+    {
+        SceneManager.LoadScene("EndlessMode");
+    }
+
+    /// <summary>
+    /// Opens the settings menu.
+    /// </summary>
+    public void OpenSettings()
+    {
+        infoMenu.SetActive(false);
+        levelsMenu.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 
     /// <summary>

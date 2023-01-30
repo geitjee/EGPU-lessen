@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -25,7 +26,14 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             if (transform.position.y < -5)
             {
-                GameMenuScript.Restart();
+                if (SceneManager.GetActiveScene().name == "EndlessMode")
+                {
+                    this.gameObject.GetComponent<EndlessTimeManager>().Finished();
+                }
+                else
+                {
+                    GameMenuScript.Restart();
+                }
             }
             // pass the input to the car!
             float h = CrossPlatformInputManager.GetAxis("Horizontal") * rotSpeed;

@@ -112,6 +112,11 @@ PrefabInstance:
       propertyPath: rotSpeed
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 11483988, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
+      propertyPath: audioMixerGroup
+      value: 
+      objectReference: {fileID: 3328429172929478279, guid: 48815720e8a5168408344c6c52d95351,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffe00fa3bd41b9a4db665bf728e3c1e1, type: 3}
 --- !u!1 &6597193155187827124 stripped
